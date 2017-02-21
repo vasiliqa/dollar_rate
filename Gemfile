@@ -35,30 +35,30 @@ gem 'slim-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-end
-
-group :development do
   # Spring speeds up development by keeping your application running in the background.
-  # Read more: https://github.com/rails/spring
   gem 'spring'
-  # Annotate ActiveRecord models
-  gem 'annotate'
-  # Ruby static code analyzer
-  gem 'rubocop', require: false
 
   # rspec stuff
   #
   # testing framework for Rails
   gem 'rspec-rails'
-  #
+  # ..is a fixtures replacement with a straightforward definition syntax
+  gem 'factory_girl_rails'
   # implements the rspec command for Spring
   gem 'spring-commands-rspec'
-  #
   # Collection of testing matchers extracted from Shoulda
   gem 'shoulda-matchers'
-  #
   # ..is a code coverage analysis tool for Ruby
   gem 'simplecov', require: false
+end
+
+group :development do
+  # Listens to file modifications and notifies you about the changes.
+  gem 'listen'
+  # Annotate ActiveRecord models
+  gem 'annotate'
+  # Ruby static code analyzer
+  gem 'rubocop', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
