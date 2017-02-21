@@ -1,19 +1,20 @@
+h2 Please, enter a new forced rate
+
 = form_for(@forced_rate, url: admin_path) do |f|
   - if f.object.errors.any?
-    div id='error_explanation'
-      .alert.alert-error
-        | The form contains #{pluralize(f.object.errors.count, 'error')}.
+    .alert.alert-danger
+      | The form contains #{pluralize(f.object.errors.count, 'error')}.
       ul
       - f.object.errors.full_messages.each do |msg|
         li
           = msg
-  div
-    | Please, enter a new forced rate.
 
-  = f.label :value
-  = f.number_field :value, step: :any
+  .form-group
+    = f.label :value
+    = f.number_field :value, step: :any, class: 'form-control'
 
-  = f.label :expiry_time
-  = f.datetime_field :expiry_time
+  .form-group
+    = f.label :expiry_time
+    = f.datetime_field :expiry_time, class: 'form-control'
 
-  = f.submit
+  = f.submit class: 'btn btn-primary'
