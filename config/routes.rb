@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'rates#show'
+  get '/admin' => 'forced_rates#edit', as: :admin
+  post '/admin' => 'forced_rates#update'
+  patch '/admin' => 'forced_rates#update'
 end
