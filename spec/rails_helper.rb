@@ -8,6 +8,8 @@ require 'spec_helper'
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'shoulda-matchers'
+require 'sidekiq/testing'
+require 'vcr_setup'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -26,6 +28,11 @@ require 'shoulda-matchers'
 
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
+
+# do not bother sidekiq in test environment
+# see https://blog.codeship.com/know-your-sidekiq-testing-rights/ for more details
+Sidekiq::Testing.fake!
+
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|

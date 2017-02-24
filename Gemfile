@@ -32,6 +32,12 @@ gem 'turbolinks', '~> 5'
 # to the essential parts without becoming cryptic
 gem 'slim-rails'
 
+# For ActiveJob support
+gem 'sidekiq'
+
+# Provides a clear syntax for writing and deploying cron jobs.
+gem 'whenever', :require => false
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -59,6 +65,12 @@ group :development do
   gem 'annotate'
   # Ruby static code analyzer
   gem 'rubocop', require: false
+end
+
+group :test do
+  # Record your test suite's HTTP interactions and replay them during future test runs.
+  gem 'vcr'
+  gem 'webmock'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
