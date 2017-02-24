@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://apilayer.net/api/live?access_key=<CURRENCY_LAYER_KEY>&currencies=RUB
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - apilayer.net
+  response:
+    status:
+      code: 106
+      message: OK
+    headers:
+      Date:
+      - Fri, 24 Feb 2017 14:35:46 GMT
+      Server:
+      - Apache/2.4.7 (Ubuntu)
+      X-Powered-By:
+      - PHP/5.5.9-1ubuntu4.14
+      X-Apilayer-Transaction-Id:
+      - 0ef684e1-07b6-432a-918b-947162ef5e3f
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Length:
+      - '163'
+      Content-Type:
+      - application/json; Charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: '{"success":false,"error":{"code":106, "info":"The users query did not return any
+      results [Technical Support: support@apilayer.com]"}}'
+    http_version:
+  recorded_at: Fri, 24 Feb 2017 14:34:44 GMT
+recorded_with: VCR 3.0.3
