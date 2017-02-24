@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://apilayer.net/api/live?access_key=<CURRENCY_LAYER_KEY>&currencies=RUB
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - apilayer.net
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 24 Feb 2017 15:21:01 GMT
+      Server:
+      - Apache/2.4.7 (Ubuntu)
+      X-Powered-By:
+      - PHP/5.5.9-1ubuntu4.14
+      X-Apilayer-Transaction-Id:
+      - a91b773a-9248-4cd4-880f-11859027f370
+      Last-Modified:
+      - Fri, 24 Feb 2017 15:22:13 GMT
+      Etag:
+      - 10c18ac9cf530733ab59777b0e7eb293
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Length:
+      - '178'
+      Content-Type:
+      - application/json; Charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: '{"success":true,"terms":"https:\/\/currencylayer.com\/terms","privacy":"https:\/\/currencylayer.com\/privacy","timestamp":1487949733,"source":"USD","quotes":{"USDRUB":58.405998}}'
+    http_version: 
+  recorded_at: Fri, 24 Feb 2017 15:20:14 GMT
+recorded_with: VCR 3.0.3
