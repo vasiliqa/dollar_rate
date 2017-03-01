@@ -17,7 +17,7 @@ http_interactions:
       - apilayer.net
   response:
     status:
-      code: 106
+      code: 200
       message: OK
     headers:
       Date:

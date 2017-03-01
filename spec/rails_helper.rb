@@ -29,10 +29,6 @@ require 'vcr_setup'
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 
-# do not bother sidekiq in test environment
-# see https://blog.codeship.com/know-your-sidekiq-testing-rights/ for more details
-Sidekiq::Testing.fake!
-
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
