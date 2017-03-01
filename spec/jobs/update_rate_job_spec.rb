@@ -1,20 +1,30 @@
 require 'rails_helper'
+require 'support/shared_examples_for_rate_service_jobs'
 
 RSpec.describe UpdateRateJob, type: :job do
   include ActiveJob::TestHelper
 
   subject { described_class.perform_later }
 
-  it 'queues the job' do
-    expect { subject }.to change(ActiveJob::Base.queue_adapter.enqueued_jobs, :size).by(1)
+  it_behaves_like 'rate_service job', :update_rate
+
+  it 'handles timeout error' do
+    allow_any_instance_of(RateService).to receive(:update_rate).and_raise(Timeout::Error)
+
+    perform_enqueued_jobs do
+      expect_any_instance_of(UpdateRateJob).
+        to receive(:retry_job).with(wait: 5.minutes, queue: :default)
+      subject
+    end
   end
 
-  it 'is in the default queue' do
-    expect(described_class.new.queue_name).to eq('default')
-  end
+  it 'handles socket error' do
+    allow_any_instance_of(RateService).to receive(:update_rate).and_raise(SocketError)
 
-  it 'calls proper service', vcr: true do
-    expect_any_instance_of(RateService).to receive(:update_rate)
-    perform_enqueued_jobs { subject }
+    perform_enqueued_jobs do
+      expect_any_instance_of(UpdateRateJob).
+        to receive(:retry_job).with(wait: 5.minutes, queue: :default)
+      subject
+    end
   end
 end
