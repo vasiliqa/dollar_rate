@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
+
   root 'rates#show'
   get '/admin' => 'forced_rates#edit', as: :admin
   post '/admin' => 'forced_rates#update'

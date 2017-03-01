@@ -1,6 +1,2 @@
 h1 Our current dollar rate:
-- if @rate
-  h3
-    = number_to_currency(@rate&.value, unit: "\u20bd", precision: 4, format: "%n %u")
-- else
-  h3 isn't set yet
+= render 'rate', rate: @rate
