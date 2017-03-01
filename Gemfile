@@ -6,7 +6,7 @@ gem 'rails', '~> 5.0.1'
 # Use PostgreSQL as the database for Active Record
 gem 'pg'
 # Use Puma as the app server
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 3.7.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -72,6 +72,19 @@ group :test do
   # Record your test suite's HTTP interactions and replay them during future test runs.
   gem 'vcr'
   gem 'webmock'
+
+  # Acceptance test framework for web applications
+  gem 'capybara'
+
+  gem 'selenium-webdriver'
+
+  gem 'poltergeist'
+
+  # Automatically save screen shots when a Capybara scenario fails
+  gem 'capybara-screenshot'
+
+  # Strategies for cleaning databases in Ruby. Can be used to ensure a clean state for testing.
+  gem 'database_cleaner'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

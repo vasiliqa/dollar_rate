@@ -9,31 +9,42 @@ RSpec.describe 'Forced Rate Management', type: :request do
   end
 
   describe 'POST #update' do
+    include ActiveJob::TestHelper
+
     let(:frate) { create :forced_rate }
 
     before { frate }
 
     context 'with valid params' do
-      before { post admin_path, params: { forced_rate: { value: 80 } } }
       it 'updates frate' do
-        # sanity check
-        expect(frate.value).not_to eq 80.0
+        post admin_path, params: { forced_rate: { value: 80 } }
+        expect(frate.value).to eq 60.0
         frate.reload
         expect(frate.value).to eq 80.0
       end
 
       it 'has status 200' do
+        post admin_path, params: { forced_rate: { value: 80 } }
         expect(response).to have_http_status(200)
+      end
+
+      it 'calls proper service' do
+        expect_any_instance_of(RateService).to receive(:broadcast_rate)
+        post admin_path, params: { forced_rate: { value: 80 } }
+      end
+
+      it 'calls proper job' do
+        expect { post admin_path, params: { forced_rate: { value: 80 } } }.
+          to have_enqueued_job(BroadcastRateJob)
       end
     end
 
     context 'with invalid params' do
-      before { post admin_path, params: { forced_rate: { value: 80 } } }
+      before { post admin_path, params: { forced_rate: { value: nil } } }
       it 'does not update frate' do
-        # sanity check
-        expect(frate.value).not_to eq nil
+        expect(frate.value).to eq 60.0
         frate.reload
-        expect(frate.value).not_to eq nil
+        expect(frate.value).to eq 60.0
       end
 
       it 'has status 200' do
