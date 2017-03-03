@@ -60,6 +60,8 @@ group :development, :test do
 end
 
 group :development do
+  # Manage Procfile-based applications
+  gem 'foreman', require: false
   # Listens to file modifications and notifies you about the changes.
   gem 'listen'
   # Annotate ActiveRecord models
